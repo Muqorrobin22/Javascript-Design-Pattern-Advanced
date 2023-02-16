@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 function withLoader(Element, url) {
-  return () => {
+  return (props) => {
     const [data, setData] = useState(null);
 
     useEffect(() => {
@@ -20,7 +20,7 @@ function withLoader(Element, url) {
       return <p>Loading .....</p>;
     }
 
-    return <Element data={data} />;
+    return <Element {...props} data={data} />;
   };
 }
 

@@ -1,13 +1,22 @@
+import withHover from "./withHover";
 import withLoader from "./withLoader";
+import "./dogImages.css";
 
 function DogImages(props) {
   console.log(props);
-  return props.data.map((data, i) => (
-    <img src={data} alt={`Dogs Data ${i}`} key={i} />
-  ));
+
+  return (
+    <div {...props}>
+      {props.hover && <div id="hover">Hovering</div>}
+      <div>
+        {props.data.map((data, i) => (
+          <img src={data} alt={`Dogs Data ${i}`} key={i} />
+        ))}
+      </div>
+    </div>
+  );
 }
 
-export default withLoader(
-  DogImages,
-  "https://dog.ceo/api/breed/labrador/images/random/6"
+export default withHover(
+  withLoader(DogImages, "https://dog.ceo/api/breed/labrador/images/random/6")
 );
